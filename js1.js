@@ -11,10 +11,8 @@ function getComputerChoice() {
     }
     return b;
 }
-function getHumanChoice() {
-    let answer = String(prompt("Rock?Paper?Scissors?")).toLowerCase();
-    return answer;
-}
+
+
 function getBattleResult(a, b) {
    
     let human = a;
@@ -93,22 +91,47 @@ function score(a){
 
     }
     console.log("Human score: "+humanScore);
+    
     console.log("Computer score: "+computerScore);
 }
-function playGame(){
+function playGame(ans){
 
-    for (let i = 0; i < 6; i++){
-        const humanSelection = getHumanChoice();
-        const computerSelection =getComputerChoice();
-        let battle = getBattleResult(humanSelection, computerSelection);
-        score(battle);
+    const humanSelection = ans.value;
+    const computerSelection =getComputerChoice();
+
+    let battle = getBattleResult(humanSelection, computerSelection);
+    score(battle);
+    console.log(humanScore);
+    console.log(computerScore);
+
+    let humanResult = document.getElementById("hResult");
+    humanResult.innerHTML = humanScore + " (" + humanSelection + ")";
+
+    let computerResult = document.getElementById("cResult");
+    computerResult.innerHTML = computerScore + " (" + computerSelection+ ")";
+
+    let gameOver = document.getElementById("gameOver");
+
+    if (humanScore == 5){
+        gameOver.innerHTML = "You Win!";
+        humanScore = 0;
+        computerScore = 0;
+    } else if (computerScore == 5){
+        gameOver.innerHTML = "You Lose!";
+        humanScore = 0;
+        computerScore = 0;
+    } else {
+
     }
+    
 }
 
 let humanScore = 0;
 let computerScore = 0;
 
-playGame();
+
+    
+// playGame();
 
 
 
